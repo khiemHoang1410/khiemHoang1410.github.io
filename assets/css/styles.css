@@ -850,7 +850,7 @@ img {
 .contact__form,
 .contact__group {
   display: grid;
-  row-gap: 1.25rem;
+  row-gap: 2rem;
 }
 
 .contact__form {
@@ -881,6 +881,7 @@ img {
   padding: 0.5rem 1rem;
   font-weight: var(--font-medium);
   transition: border .5s, background-color .5s;
+  border-radius: 3px;
 }
 
 /* Opaque placeholder */
@@ -895,21 +896,130 @@ img {
   color: var(--black-color);
 }
 
-.contact__input:-webkit-autofill {
-  transition: background-color 6000s, color 6000s, border 6000s;
-  background-color: var(--white-color); /* Đảm bảo rằng autofill có màu nền đúng */
-  color: var(--black-color); /* Đảm bảo rằng autofill có màu chữ đúng */
+/* .contact__input:-webkit-autofill {
+  transition: background-color 6000s , color 6000s !important;
+} */
+
+/* Đảm bảo input và textarea có màu mặc định */
+.contact__input,
+.contact__textarea {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  transition: background-color 0.5s, color 0.5s;
 }
 
-/* Sau khi bỏ focus */
-.contact__input:not(:focus):-webkit-autofill {
-  background-color: var(--black-color); /* Quay lại màu nền ban đầu */
-  color: var(--white-color); /* Quay lại màu chữ ban đầu */
+/* Khi input có autofill */
+.contact__input:autofill,
+.contact__textarea:autofill {
+  background-color: var(--white-color) !important;
+  /* Màu nền khi autofill */
+  color: var(--black-color) !important;
+  /* Màu chữ khi autofill */
+  border: 3px solid var(--first-color) !important;
+  /* Đường viền nếu cần */
 }
 
+
+
+.contact__label {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  color: var(--text-color-light);
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  background-color: var(--black-color);
+  padding: 8px;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: top .5s, opacity .5s, background-color .5s;
+  opacity: 0;
+}
+
+.contact__form .contact__area {
+  height: 10rem;
+}
+
+.contact__area textarea {
+  resize: none;
+  padding-top: 1rem;
+}
+
+.contact__button {
+  background-color: var(--first-color);
+  cursor: pointer;
+}
+
+.contact__input:focus::placeholder {
+  opacity: 0;
+}
 
 /* Move label up & sticky label */
+.contact__input:focus+.contact__label,
+.contact__input:not(:placeholder-shown).contact__input:not(:focus)+.contact__label {
+  opacity: 1;
+  top: .5rem;
+  border-radius: 4px;
+  color: white;
+}
 
+.contact__social {
+  display: grid;
+  row-gap: 1rem;
+  background-color: hsl(0, 0%, 10%);
+  padding-block: 1rem, 2rem;
+  text-align: center;
+}
+
+.contact__social-arrow{
+  width: 32px; 
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.contact__social-data{
+  flex-direction: column;
+  display: flex;
+  row-gap: 1.5rem;
+}
+
+.contact__social-description-1 {
+  color: var(--text-color-light);
+  font-size: var(--small-font-size);
+  margin-bottom: 0.5rem;
+}
+.contact__social-description-2 {
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  font-size: var(--small-font-size);
+}
+
+.contact__social-links{
+  display: flex;
+  justify-content: center;
+  column-gap: 1rem;
+}
+
+.contact__social-link {
+  background-color: var(--black-color-light);
+  padding: 6px;
+  color: var(--white-color);
+  font-size: 1.25rem;
+  display: grid;
+  place-items: center;
+  transition: transform 0.5s ease, box-shadow 0.3s, background-color 0.3s, color 0.3s, opacity 0.3s;
+  border-radius: 50%;
+}
+
+.contact__social-link:hover {
+  background-color: var(--first-color);
+  color: var(--black-color);
+  cursor: pointer;
+  transform: translateY(-6px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: transform .5s, box-shadow 0.3s, background-color 0.3s, color 0.3s, opacity 0.3s;
+}
 /*=============== FOOTER ===============*/
 
 /*=============== SCROLL BAR ===============*/
