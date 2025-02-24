@@ -84,9 +84,9 @@ const scrollActive = () => {
 
     sections.forEach(current => {
         const sectionHeight = current.offsetHeight, // Chiều cao của section
-              sectionTop = current.offsetTop - 58, // Vị trí của section (đã trừ đi một khoảng để tính toán)
-              sectionId = current.getAttribute('id'), // Lấy id của section
-              sectionClass = document.querySelector('.nav__menu a[href*="' + sectionId + '"]'); // Thêm dấu ngoặc kép xung quanh sectionId để đảm bảo chính xác
+            sectionTop = current.offsetTop - 58, // Vị trí của section (đã trừ đi một khoảng để tính toán)
+            sectionId = current.getAttribute('id'), // Lấy id của section
+            sectionClass = document.querySelector('.nav__menu a[href*="' + sectionId + '"]'); // Thêm dấu ngoặc kép xung quanh sectionId để đảm bảo chính xác
 
         // Kiểm tra nếu vị trí cuộn trang đang ở trong phạm vi của section hiện tại
         if (scrollDown >= sectionTop && scrollDown < sectionTop + sectionHeight) {
@@ -101,8 +101,28 @@ window.addEventListener('scroll', scrollActive); // Lắng nghe sự kiện scro
 
 
 /*=============== DARK LIGHT THEME ===============*/
+const themeButton = document.getElementById('theme-button')
+const darkTheme = 'dark-theme'
+const iconTheme = 'ri-sun-line'
 
+const selectedTheme = localStorage.getItem('selected-theme')
+const selectedIcon = localStorage.getItem('selected-icon')
 
+const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
+const getCurrentIcon = () => document.body.classList.contains(iconTheme) ? 'ri-moon-line' : 'ri-sun-line'
+
+// Kiểm tra nếu theme và icon đã lưu trữ trong local storage
+    if (selectedTheme) {
+        document.body.classList[selectedTheme=== 'dark' ? 'add' : 'remove'](darkTheme)
+        themeButton.classList[selectedIcon === 'ri-moon-line'? 'add' : 'remove'](iconTheme)
+    }
+
+    themeButton.addEventListener('click', ()=>{
+        document.body.classList.toggle(darkTheme)
+        themeButton.classList.toggle(iconTheme)
+        localStorage.setItem('selected-theme', getCurrentTheme())
+        localStorage.setItem('selected-icon', getCurrentIcon())
+    })
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 
 // Lắng nghe sự thay đổi giá trị input và textarea

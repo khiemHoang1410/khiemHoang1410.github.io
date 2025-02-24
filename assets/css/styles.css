@@ -93,13 +93,43 @@ img {
 }
 
 /*=============== THEME ===============*/
+.nav__button {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.change-theme {
+  font-size: 1.25rem;
+  color: var(--title-color);
+  cursor: pointer;
+  transition: color .5s;
+}
 
 /*========== Variables Dark theme ==========*/
+body.dark-theme {
+  --first-color: hsl(207, 100%, 50%);
+  --black-color: hsl(0, 0%, 18%);
+  --black-color-light: hsl(0, 0%, 30%);
+  --title-color: hsl(0, 0%, 95%);
+  --text-color: hsl(0, 0%, 70%);
+  --body-color: hsl(0, 0%, 8%);
+  --container-color: hsl(0, 0%, 12%);
+}
 
 /*========== 
 	Color changes in some parts of 
 	the website, in dark theme
 ==========*/
+.dark-theme .shadow-header {
+  box-shadow: 0 1px 12px hsla(0, 0%, 0%, .6);
+}
+
+.dark-theme .section__title-1::after,
+.dark-theme .section__title-2::after{
+  background-color: hsla(14, 70%, 50%, .2);
+}
+
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
@@ -114,9 +144,11 @@ img {
 
 .section {
   padding-block: 4rem 2rem;
-  min-height: 100vh; /* Đảm bảo mỗi section chiếm ít nhất một màn hình */
-  position: relative; /* Đảm bảo các phần tử không bị che khuất */
-  z-index: 1; 
+  min-height: 100vh;
+  /* Đảm bảo mỗi section chiếm ít nhất một màn hình */
+  position: relative;
+  /* Đảm bảo các phần tử không bị che khuất */
+  z-index: 1;
 }
 
 .section__title-1,
@@ -322,7 +354,7 @@ img {
 }
 
 /* Active link */
-.active-link{
+.active-link {
   color: var(--white-color);
 }
 
@@ -330,6 +362,7 @@ img {
 
   width: 30%;
 }
+
 /*=============== HOME ===============*/
 .home__container {
   padding-top: 2rem;
@@ -462,7 +495,8 @@ img {
 
 .home__scroll-box i {
   animation: scroll-down 1.5s infinite;
-  font-size: 1.5rem; ;
+  font-size: 1.5rem;
+  ;
 }
 
 /* Animate scroll icon */
@@ -1117,8 +1151,10 @@ img {
   border-radius: 50%;
   padding: 8px;
   transition: bottom 0.5s transform .5s background-color .5s;
-  transition: bottom 0.5s ease, opacity 0.5s ease-in-out; /* Thêm transition cho bottom và opacity */
-  opacity: 0; /* Ban đầu ẩn đi */
+  transition: bottom 0.5s ease, opacity 0.5s ease-in-out;
+  /* Thêm transition cho bottom và opacity */
+  opacity: 0;
+  /* Ban đầu ẩn đi */
 }
 
 
@@ -1131,16 +1167,79 @@ img {
 }
 
 /* Show Scroll Up */
-.show_scroll{
+.show_scroll {
   bottom: 3rem;
-  opacity: 1; 
+  opacity: 1;
 }
 
 
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .home__images {
+    width: 180px;
+  }
+
+  .about__images {
+    width: 180px;
+  }
+
+  .about__shadow {
+    height: 330px;
+    right: -2.5rem;
+  }
+
+  .contact__data {
+    transform: translateX(0);
+  }
+}
 
 /* For medium devices */
+@media screen and (min-width: 576px) {
+
+  .home__container,
+  .about__container,
+  .projects__container {
+    grid-template-columns: 350px;
+    justify-content: center;
+  }
+
+  .contact__data {
+    width: 350px;
+    margin: 4rem 1.5rem;
+    margin-inline: auto;
+  }
+
+  .contact__container {
+    grid-template-columns: 500px;
+    justify-content: center;
+  }
+
+  .contact__group {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  }
+
+  .contact__social {
+    background-color: transparent;
+  }
+
+  .contact__social-arrow {
+    filter: invert(1);
+  }
+
+  .contact__social-description-1 {
+    color: var(--text-color);
+  }
+
+  .contact__social-description-2 {
+    color: var(--title-color);
+  }
+}
 
 /* For large devices */
