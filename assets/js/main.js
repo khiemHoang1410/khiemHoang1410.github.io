@@ -46,29 +46,58 @@ const sendEmail = (e) => {
     // serviceID - templateID - #form - publicKey
     emailjs.sendForm('service_iypfb5r', 'template_crsyj5b', '#contact-form', '9n4x5HcUCn7nTFbHT')
         .then(() => {
-            contactMessenger.textContent = 'Message sent successfully'
+            contactMessenger.textContent = 'Message sent successfully ✅';
 
             setTimeout(() => {
-                contactMessenger.textContent = '' // Reset message after 5 seconds
+                contactMessenger.textContent = ''; // Reset message after 5 seconds
             }, 5000);
 
-            contactForm.reset()
+            contactForm.reset();
         })
         .catch((err) => {
-            console.error('Error:', err)
-        }, () => { 
-            contactMessenger.textContent = 'Message not sent (service error)'
+            console.error('Error:', err);
+            contactMessenger.textContent = 'Message not sent (service error) ❌';
+
+            setTimeout(() => {
+                contactMessenger.textContent = ''; // Reset message after 20 seconds
+            }, 20000);
         });
-}
+};
 
 contactForm.addEventListener('submit', sendEmail)
 
 
-
 /*=============== SHOW SCROLL UP ===============*/
 
+const scrollUp = () => {
+    const scrollUp = document.getElementById('scroll-up')
+    this.scrollY >= 350 ? scrollUp.classList.add('show_scroll') : scrollUp.classList.remove('show_scroll')
+}
 
+window.addEventListener('scroll', scrollUp)
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+
+const sections = document.querySelectorAll('section[id]'); // Chọn tất cả các section có id
+
+const scrollActive = () => {
+    const scrollDown = window.scrollY; // Lấy vị trí cuộn trang
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight, // Chiều cao của section
+              sectionTop = current.offsetTop - 58, // Vị trí của section (đã trừ đi một khoảng để tính toán)
+              sectionId = current.getAttribute('id'), // Lấy id của section
+              sectionClass = document.querySelector('.nav__menu a[href*="' + sectionId + '"]'); // Thêm dấu ngoặc kép xung quanh sectionId để đảm bảo chính xác
+
+        // Kiểm tra nếu vị trí cuộn trang đang ở trong phạm vi của section hiện tại
+        if (scrollDown >= sectionTop && scrollDown < sectionTop + sectionHeight) {
+            sectionClass.classList.add('active-link'); // Thêm class active-link khi section đang hiển thị
+        } else {
+            sectionClass.classList.remove('active-link'); // Loại bỏ class active-link khi section không còn hiển thị
+        }
+    });
+}
+
+window.addEventListener('scroll', scrollActive); // Lắng nghe sự kiện scroll
 
 
 /*=============== DARK LIGHT THEME ===============*/

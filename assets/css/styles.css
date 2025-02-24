@@ -114,6 +114,9 @@ img {
 
 .section {
   padding-block: 4rem 2rem;
+  min-height: 100vh; /* Đảm bảo mỗi section chiếm ít nhất một màn hình */
+  position: relative; /* Đảm bảo các phần tử không bị che khuất */
+  z-index: 1; 
 }
 
 .section__title-1,
@@ -132,7 +135,7 @@ img {
 
 .section__title-1::after,
 .section__title-2::after {
-  content: "";
+  content: '';
   width: 40px;
   height: 28px;
   background-color: hsla(14, 98%, 50%, 0.2);
@@ -319,7 +322,14 @@ img {
 }
 
 /* Active link */
+.active-link{
+  color: var(--white-color);
+}
 
+.active-link::after {
+
+  width: 30%;
+}
 /*=============== HOME ===============*/
 .home__container {
   padding-top: 2rem;
@@ -447,10 +457,12 @@ img {
   cursor: pointer;
   overflow: hidden;
   transition: background-color 1s;
+  border-radius: 4px;
 }
 
 .home__scroll-box i {
   animation: scroll-down 1.5s infinite;
+  font-size: 1.5rem; ;
 }
 
 /* Animate scroll icon */
@@ -971,13 +983,13 @@ img {
   text-align: center;
 }
 
-.contact__social-arrow{
-  width: 32px; 
+.contact__social-arrow {
+  width: 32px;
   margin: 0 auto;
   margin-top: 1rem;
 }
 
-.contact__social-data{
+.contact__social-data {
   flex-direction: column;
   display: flex;
   row-gap: 1.5rem;
@@ -988,13 +1000,14 @@ img {
   font-size: var(--small-font-size);
   margin-bottom: 0.5rem;
 }
+
 .contact__social-description-2 {
   color: var(--white-color);
   font-weight: var(--font-semi-bold);
   font-size: var(--small-font-size);
 }
 
-.contact__social-links{
+.contact__social-links {
   display: flex;
   justify-content: center;
   column-gap: 1rem;
@@ -1020,13 +1033,110 @@ img {
   z-index: 10;
   transition: transform .5s, box-shadow 0.3s, background-color 0.3s, color 0.3s, opacity 0.3s;
 }
+
+.contact__message {
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  position: absolute;
+  bottom: -1.6rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
 /*=============== FOOTER ===============*/
+.footer {
+  background-color: var(--black-color);
+}
+
+.footer__container {
+  padding-block: 3rem 2rem;
+  row-gap: 2.5rem;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+.footer__link {
+  color: var(--white-color);
+  transition: color .5s;
+}
+
+.footer__link:hover {
+  color: var(--text-color-light);
+  transform: translateY(-2px);
+  z-index: 10;
+  transition: color .5s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.footer__copy {
+  color: var(--text-color-light);
+  text-align: center;
+  font-size: var(--small-font-size);
+}
+
+.footer__copy a {
+  color: var(--white-color);
+  font-size: var(--font-medium);
+  transition: color .5s;
+}
 
 /*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar {
+  width: 0.6em;
+  border-radius: .5rem;
+  background-color: hsl(0, 0%, 65%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--black-color-light);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--first-color);
+  border-radius: 2px;
+}
 
 /*=============== SCROLL UP ===============*/
+.scrollup {
+  display: grid;
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: var(--black-color);
+  z-index: var(--z-tooltip);
+  font-size: 1.3rem;
+  display: inline-flex;
+  padding: 8px;
+  color: var(--white-color);
+  border-radius: 50%;
+  padding: 8px;
+  transition: bottom 0.5s transform .5s background-color .5s;
+  transition: bottom 0.5s ease, opacity 0.5s ease-in-out; /* Thêm transition cho bottom và opacity */
+  opacity: 0; /* Ban đầu ẩn đi */
+}
+
+
+.scrollup:hover {
+  background-color: var(--first-color);
+  transform: translateY(-.5rem);
+  transition: background-color .5s, transform .5s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: var(--z-tooltip);
+}
 
 /* Show Scroll Up */
+.show_scroll{
+  bottom: 3rem;
+  opacity: 1; 
+}
+
+
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
