@@ -68,6 +68,7 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
+  transition: background-color .3s;
 }
 
 h1,
@@ -117,7 +118,7 @@ body.dark-theme {
   --container-color: hsl(0, 0%, 12%);
 }
 
-/*========== 
+/*==========  
 	Color changes in some parts of 
 	the website, in dark theme
 ==========*/
@@ -126,11 +127,47 @@ body.dark-theme {
 }
 
 .dark-theme .section__title-1::after,
-.dark-theme .section__title-2::after{
+.dark-theme .section__title-2::after {
   background-color: hsla(14, 70%, 50%, .2);
 }
 
+.dark-theme .home__arrow,
+.dark-theme .home__line,
+.dark-theme .about__line {
+  filter: none;
+}
 
+.dark-theme .button__ghost,
+.dark-theme .services__icon {
+  color: var(--white-color);
+}
+
+.dark-theme .projects__card:hover {
+  background: var(--black-color);
+  transition: background-color 0.3s;
+  border: 1px solid var(--white-color);
+  margin: -1px;
+}
+
+.dark-theme .contact__mail,
+.dark-theme .contact__input,
+.dark-theme .contact__label {
+  color: var(--container-color);
+}
+
+.dark-theme .footer {
+  background-color: hsl(0, 0%, 4%);
+}
+
+.dark-theme::-webkit-scrollbar{
+  background-color: hsl(0, 0%, 20%);
+}
+.dark-theme::-webkit-scrollbar-thumb{
+  background-color: hsl(0, 0%, 30%);
+}
+.dark-theme::-webkit-scrollbar-thumb:hover{
+  background-color: hsl(0, 0%, 40%);
+}
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 1120px;
@@ -532,7 +569,7 @@ body.dark-theme {
   padding: 1rem;
   border-radius: 10px;
   font-size: var(--h2-font-size);
-  /* transition: background-color 1s; */
+  transition: background-color 1s;
 }
 
 .button:hover {
@@ -1128,12 +1165,12 @@ body.dark-theme {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--black-color-light);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--first-color);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /*=============== SCROLL UP ===============*/
