@@ -112,18 +112,29 @@ const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dar
 const getCurrentIcon = () => document.body.classList.contains(iconTheme) ? 'ri-moon-line' : 'ri-sun-line'
 
 // Kiểm tra nếu theme và icon đã lưu trữ trong local storage
-    if (selectedTheme) {
-        document.body.classList[selectedTheme=== 'dark' ? 'add' : 'remove'](darkTheme)
-        themeButton.classList[selectedIcon === 'ri-moon-line'? 'add' : 'remove'](iconTheme)
-    }
+if (selectedTheme) {
+    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+    themeButton.classList[selectedIcon === 'ri-moon-line' ? 'add' : 'remove'](iconTheme)
+}
 
-    themeButton.addEventListener('click', ()=>{
-        document.body.classList.toggle(darkTheme)
-        themeButton.classList.toggle(iconTheme)
-        localStorage.setItem('selected-theme', getCurrentTheme())
-        localStorage.setItem('selected-icon', getCurrentIcon())
-    })
+themeButton.addEventListener('click', () => {
+    document.body.classList.toggle(darkTheme)
+    themeButton.classList.toggle(iconTheme)
+    localStorage.setItem('selected-theme', getCurrentTheme())
+    localStorage.setItem('selected-icon', getCurrentIcon())
+})
 /*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2500,
+    delay: 0,
+    reset: true
+})
+
+sr.reveal('.home__perfil, .about__image,.contact__mail', { origin: 'right' });
+sr.reveal('.home__name, .home__info,.contact__data, .about__container .section__title-1, .about__info,.contact__social', { origin: 'left' });
+sr.reveal('.services__card, .projects__card', { interval: 100 });
 
 // Lắng nghe sự thay đổi giá trị input và textarea
 const inputs = document.querySelectorAll('.contact__input, .contact__textarea');
